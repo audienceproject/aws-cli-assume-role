@@ -1,0 +1,16 @@
+name: aws-cli-assume-role
+version: 1.0.0
+summary: Assume a role through the AWS CLI 
+keywords:
+  - sam
+  - deploy
+properties:
+  - name: aws-access-key-id
+    type: string
+    required: true
+  - name: aws-secret-access-key
+    type: string
+    required: true
+  - name: role-arn
+    type: string
+    required: true
