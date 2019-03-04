@@ -14,11 +14,6 @@ if [[  -z $role_arn ]]; then
 	exit 1
 fi
 
-# Check that we can assume the specified role
-echo "Checking that $aws_key can assume $role_arn..."
-UUID=$(cat /proc/sys/kernel/random/uuid)
-aws sts assume-role --role-arn $role_arn --role-session-name $UUID
-
 # Create AWS credentials files
 mkdir -p ~/.aws
 
@@ -42,3 +37,12 @@ export AWS_DEFAULT_PROFILE=assumedrole
 EOT
 
 source ~/.bash_profile
+
+# Check that we can assume the specified role
+echo "Checking that $aws_key can assume $role_arn..."
+UUID=$(cat /proc/sys/kernel/random/uuid)
+if aws sts assume-role --role-arn $role_arn --role-session-name $UUID; then
+    echo "Sucessfully assumed role $role_arn"
+else
+    echo "Error assuming role $role_arn" && exit 1
+fi
