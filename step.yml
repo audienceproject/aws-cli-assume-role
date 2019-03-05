@@ -1,5 +1,5 @@
 name: aws-cli-assume-role
-version: 1.0.1
+version: 1.0.2
 summary: Assume a role through the AWS CLI
 keywords:
   - sam
